@@ -35,7 +35,7 @@ dvc pull
 To train the model, run the following command:
 
 ```bash
-python main.py 
+python main.py
 ```
 Or use the Makefile command:
 

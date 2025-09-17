@@ -14,7 +14,7 @@ mlflow:
 
 test:
 	$(python) -m pytest
-		
+
 clean:
 	rm -rf steps/__pycache__
 	rm -rf __pycache__

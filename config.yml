@@ -1,4 +1,4 @@
-data: 
+data:
   train_path: data/train.csv
   test_path: data/test.csv
 
