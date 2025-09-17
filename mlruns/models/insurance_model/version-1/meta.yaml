@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1758088238552
+current_stage: None
+description: null
+last_updated_timestamp: 1758088238552
+name: insurance_model
+run_id: 2e166027d81a4edaaa8520cc98245705
+run_link: null
+source: file:///Users/shadabhussain/Downloads/mlops-tutorial/mlruns/210783740644101709/2e166027d81a4edaaa8520cc98245705/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///Users/shadabhussain/Downloads/mlops-tutorial/mlruns/210783740644101709/2e166027d81a4edaaa8520cc98245705/artifacts/model
+user_id: null
+version: 1

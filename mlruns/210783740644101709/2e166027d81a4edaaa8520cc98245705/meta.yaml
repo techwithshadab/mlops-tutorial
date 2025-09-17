@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/shadabhussain/Downloads/mlops-tutorial/mlruns/210783740644101709/2e166027d81a4edaaa8520cc98245705/artifacts
+end_time: 1758088238554
+entry_point_name: ''
+experiment_id: '210783740644101709'
+lifecycle_stage: active
+run_id: 2e166027d81a4edaaa8520cc98245705
+run_name: wistful-shrike-121
+run_uuid: 2e166027d81a4edaaa8520cc98245705
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758088235041
+status: 3
+tags: []
+user_id: shadabhussain
