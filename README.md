@@ -1,12 +1,7 @@
 # Insurance Cross Sell Prediction 🏠🏥
-[![GitHub](https://img.shields.io/badge/GitHub-code-blue?style=flat&logo=github&logoColor=white&color=red)](https://github.com/techwithshadab/mlops-project)
+[![GitHub](https://img.shields.io/badge/GitHub-code-blue?style=flat&logo=github&logoColor=white&color=red)](https://github.com/techwithshadab/mlops-tutorial)
 
 Welcome to the Insurance Cross-Selling Prediction project! The goal of this project is to predict which customers are most likely to purchase additional insurance products using a machine learning model.
-
-
-## Diagram
-Below is the architecture diagram that illustrates the flow of the project from data ingestion to model deployment:
-![Image](docs/mlops.jpg)
 
 ## Get Started
 To get started with the project, follow the steps below:
@@ -14,7 +9,7 @@ To get started with the project, follow the steps below:
 #### 1. Clone the Repository
 Clone the project repository from GitHub:
 ```bash
-git clone https://github.com/techwithshadab/ml-project.git
+git clone https://github.com/techwithshadab/mlops-tutorial
 ```
 ```bash
 cd ml-project
