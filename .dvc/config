@@ -1,2 +1,5 @@
 [core]
     autostage = true
+    remote = mlops
+['remote "mlops"']
+    url = gs://dvc-mlops

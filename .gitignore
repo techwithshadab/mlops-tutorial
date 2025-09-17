@@ -41,3 +41,4 @@ ENV*/
 env.bak
 env.old
 env.backup
+/data
