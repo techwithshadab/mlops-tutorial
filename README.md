@@ -1,52 +1,7 @@
-# Insurance Cross Sell Predict### 3. Data Preparation
-
-    Pull the data from DVC. If this command fails, the necessary data is already included in the `data/` directory.
-
-    ```bash
-    dvc pull
-    ```
-
-## Data and Model Versioning with DVC
-
-This project uses [DVC (Data Version Control)](https://dvc.org/) to manage large files, such as datasets and models, that are not stored in Git. The configuration for DVC is in the `.dvc/` directory, and it helps ensure that experiments are reproducible.
-
-### Retrieving Data
-
-To retrieve the versioned data and models, run the following command after setting up the environment. This will download the `data/` directory tracked by DVC.
-
-```bash
-dvc pull
-```
-
-### Versioning New Data
-
-If you modify the dataset or retrain the model, you can update the versioned files using the following steps:
-
-1.  **Add the files to DVC tracking:**
-    This command tells DVC to start tracking a file or directory.
-
-    ```bash
-    dvc add data/
-    ```
-
-2.  **Commit the changes to Git:**
-    The `dvc add` command creates a new `.dvc` file (e.g., `data.dvc`). This small file acts as a pointer to the actual data and should be committed to Git.
-
-    ```bash
-    git add data.dvc
-    git commit -m "Updated dataset"
-    ```
-
-3.  **Push the data to DVC remote storage:**
-    This command uploads the actual data file (tracked by DVC) to the configured remote storage.
-
-    ```bash
-    dvc push
-    ```
-
+# Insurance Cross Sell Prediction 🏠🏥
 [![GitHub](https://img.shields.io/badge/GitHub-code-blue?style=flat&logo=github&logoColor=white&color=red)](https://github.com/techwithshadab/mlops-tutorial)
 
-Welcome to the Insurance Cross-Selling Prediction project! The goal of this project is to predict which customers are most likely to purchase additional insurance products using a machine learning model. This README provides comprehensive instructions for setting up the environment, running the project, and using the integrated code quality tools.
+Welcome to the Insurance Cross-Selling Prediction project! The goal of this project is to predict which customers are most likely to purchase additional insurance products using a machine learning model. This README provides comprehensive instructions for setting up the environment, running the project, and using the integrated code quality and CI/CD tools.
 
 ## Getting Started
 
@@ -73,14 +28,6 @@ Welcome to the Insurance Cross-Selling Prediction project! The goal of this proj
     make setup
     ```
 
-3.  **Data Preparation**
-
-    Pull the data from DVC. If this command fails, the necessary data is already included in the `data/` directory.
-
-    ```bash
-    dvc pull
-    ```
-
 ## Code Quality and Formatting
 
 This project uses a suite of tools to ensure high code quality and consistent formatting.
@@ -93,7 +40,7 @@ Configurations for these tools are in the `.flake8` and `pyproject.toml` files.
 
 ### Pre-commit Hooks
 
-The repository is configured to use `pre-commit` to automate code quality checks before each `git commit`. The hooks will format your code, lint it, run tests, and check if the Docker image builds successfully.
+The repository is configured to use `pre-commit` to automate code quality checks before each `git commit`.
 
 1.  **Install the Git Hooks:**
 
@@ -105,7 +52,7 @@ The repository is configured to use `pre-commit` to automate code quality checks
 
 2.  **Usage:**
 
-    Once installed, the hooks will run automatically each time you attempt to make a commit. If a hook fails (e.g., a file needs reformatting), it may modify files. Simply `git add` the modified files and attempt your commit again.
+    Once installed, the hooks will run automatically each time you attempt to make a commit. If a hook fails, simply `git add` the modified files and attempt your commit again.
 
 3.  **Run Manually:**
 
@@ -115,44 +62,52 @@ The repository is configured to use `pre-commit` to automate code quality checks
     pre-commit run --all-files
     ```
 
-## Available Makefile Commands
+## CI/CD with GitHub Actions
 
-The `Makefile` provides convenient shortcuts for common tasks:
+This project includes a CI/CD pipeline using GitHub Actions, defined in `.github/workflows/ci-cd.yml`.
+
+### Continuous Integration (CI)
+
+The CI pipeline runs on every push and pull request to the `main` branch. It performs the following checks:
+-   Installs dependencies.
+-   Runs `pre-commit` hooks for linting and formatting.
+-   Executes the `pytest` test suite.
+
+### Continuous Deployment (CD)
+
+The CD pipeline is triggered on every push to the `main` branch, provided the CI pipeline succeeds. It performs the following steps:
+1.  Logs in to Docker Hub.
+2.  Builds the Docker image.
+3.  Pushes the image to Docker Hub with the `latest` and commit SHA tags.
+
+### GitHub Secrets Configuration
+
+To enable the CD pipeline, you must configure the following secrets in your GitHub repository settings under **Settings > Secrets and variables > Actions**:
+
+-   `DOCKER_USERNAME`: Your Docker Hub username.
+-   `DOCKER_PASSWORD`: Your Docker Hub password or an access token.
+
+## Data and Model Versioning with DVC
+
+This project uses [DVC (Data Version Control)](https://dvc.org/) to manage large files like datasets and models.
+
+-   **Retrieve Data:** `dvc pull`
+-   **Version New Data:** `dvc add <file>`, `git add <file.dvc>`, `dvc push`
+
+## Model Monitoring with Evidently AI
+
+The `notebook/monitor.ipynb` notebook is used to monitor the model for data drift, data quality, and target drift using Evidently AI.
+
+-   It compares the training data (`reference`) with recent test (`current`) and production data.
+-   It generates interactive HTML reports (e.g., `test_drift.html`) that visualize any detected drift or data quality issues.
+
+To run the monitoring, execute the cells in the `notebook/monitor.ipynb` notebook.
+
+## Available Makefile Commands
 
 -   `make setup`: Sets up the virtual environment and installs dependencies.
 -   `make run`: Runs the main application (`main.py`) to train the model.
 -   `make test`: Executes the test suite using `pytest`.
 -   `make mlflow`: Starts the MLflow tracking UI.
--   `make clean`: Removes temporary files and caches (`__pycache__`, `.pytest_cache`).
--   `make remove`: Deletes the virtual environment and `mlruns` directory.
-
-## Running the Application
-
-### FastAPI
-
-To start the FastAPI application for real-time predictions:
-
-```bash
-uvicorn app:app --reload
-```
-
-### Docker
-
-To build and run the application as a Docker container:
-
-1.  **Build the image:**
-
-    ```bash
-    docker build -t mlops-tutorial .
-    ```
-
-2.  **Run the container:**
-
-    ```bash
-    docker run -p 80:80 mlops-tutorial
-    ```
-Once your Docker image is built, you can push it to a container registry like Docker Hub for deployment.
-
-## Model Monitoring
-
-To monitor the model for data drift and performance degradation, run the `monitor.ipynb` notebook, which integrates Evidently AI for model analysis.
+-   `make clean`: Removes temporary files and caches.
+-   `make remove`: Deletes the virtual
