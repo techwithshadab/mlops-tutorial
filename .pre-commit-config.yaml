@@ -22,7 +22,7 @@ repos:
     hooks:
     -   id: pytest
         name: pytest
-        entry: /Users/shadabhussain/Downloads/mlops-tutorial/venv/bin/python -m pytest
+        entry: pytest
         language: system
         types: [python]
         pass_filenames: false
