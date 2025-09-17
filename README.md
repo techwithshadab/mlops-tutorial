@@ -12,7 +12,7 @@ Clone the project repository from GitHub:
 git clone https://github.com/techwithshadab/mlops-tutorial
 ```
 ```bash
-cd ml-project
+cd mlops-tutorial
 ```
 #### 2. Set Up the Environment
 Ensure you have Python 3.8+ installed. Create a virtual environment and install the necessary dependencies:
